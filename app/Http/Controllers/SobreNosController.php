@@ -11,7 +11,7 @@ class SobreNosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function sobrenos()
     {
         return view('site.sobrenos');
     }
