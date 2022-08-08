@@ -23,15 +23,15 @@ return new class extends Migration
         //Adicionando relacionamento com a tabela produtos
         //Relacionamento 1:N
         Schema::table('produtos', function(Blueprint $table) {
-            $table->unsignedInteger('unidade_id');
-            $table->foreign('uniade_id')->references('id')->on('unidades');
+            $table->unsignedBigInteger('unidade_id');
+            $table->foreign('unidade_id')->references('id')->on('unidades');
         });
 
         //Adicionando relacionamento com a tabela produto_detalhes
         //Relacionamento 1:N
         Schema::table('produto_detalhes', function(Blueprint $table) {
-            $table->unsignedInteger('unidade_id');
-            $table->foreign('uniade_id')->references('id')->on('unidades');
+            $table->unsignedBigInteger('unidade_id');
+            $table->foreign('unidade_id')->references('id')->on('unidades');
         });
     }
 
@@ -52,7 +52,7 @@ return new class extends Migration
             $table->dropForeign('produtos_unidade_id_foreign');
             $table->dropColumn('unidade_id');
         });
-        
+
         Schema::dropIfExists('unidades');
     }
 };
