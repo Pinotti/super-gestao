@@ -14,7 +14,13 @@ class ContatoController extends Controller
      */
     public function contato()
     {
-        return view('site.contato');
+        $motivo_contatos = [
+            '1' => 'Dúvida',
+            '2' => 'Elogio',
+            '3' => 'Reclamação'
+        ];
+        
+        return view('site.contato', ['motivo_contatos' => $motivo_contatos]);
     }
 
     /**
