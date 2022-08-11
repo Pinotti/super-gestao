@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\LogAcessoMiddleware;
 use Illuminate\Http\Request;
 
 class SobreNosController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
