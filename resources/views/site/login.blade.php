@@ -11,7 +11,7 @@
 
     <div class="informacao-pagina">
         <div style="width: 30%; margin-left: auto; margin-right: auto;">
-            <form action="{{ route('site.autenticar') }}" method="post">
+            <form action="{{ route('site.login') }}" method="post">
                 @csrf
                 <input type="text" name="usuario" placeholder="Usuário" class="borda-preta">
                 {{ $errors->has('usuario') ? $errors->first('usuario') : '' }}

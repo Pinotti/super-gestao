@@ -9,14 +9,17 @@ class LoginController extends Controller
 {
     public function index (Request $request)
     {
-        dd($request);
-        $msg = '';
-        
+        $erro = '';
+
         if ($request->get('erro') == 1) {
-            $msg = 'Usuário e/ou senha inválidos';
+            $erro = 'Usuário e/ou senha inválidos';
         }
 
-        return view('site.login', ['erro' => $msg]);
+        if ($request->get('erro') == 2) {
+            $erro = 'Necessário realizar login para ter acesso a página';
+        }
+
+        return view('site.login', ['erro' => $erro]);
     }
 
     public function autenticar (Request $request)
@@ -40,11 +43,19 @@ class LoginController extends Controller
         $usuario = $user->where('email', $email)->where('password', md5($senha))->get()->first();
 
         if (isset($usuario->name)) {
-            echo 'Usuário existe';
+            session_start();
+            $_SESSION['nome'] = $usuario->name;
+            $_SESSION['email'] = $usuario->email;
+
+            return redirect()->route('app.home');
         } else {
             return redirect()->route('site.login', ['erro' => 1]);
         }
+    }
 
-
+    public function sair ()
+    {
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
